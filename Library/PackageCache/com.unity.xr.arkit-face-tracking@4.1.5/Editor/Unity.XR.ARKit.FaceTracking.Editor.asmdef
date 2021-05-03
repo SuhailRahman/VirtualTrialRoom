@@ -1,0 +1,19 @@
+{
+    "name": "Unity.XR.ARKit.FaceTracking.Editor",
+    "references": [
+        "Unity.XR.ARKit.Editor",
+        "Unity.XR.ARKit.FaceTracking",
+        "Unity.XR.ARKit"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

@@ -1,0 +1,25 @@
+{
+  "description": "This package provides Unity C# bindings to the Autodesk® FBX® SDK.",
+  "displayName": "Autodesk FBX SDK for Unity",
+  "keywords": [
+    "fbx",
+    "animation",
+    "modeling",
+    "maya",
+    "max"
+  ],
+  "name": "com.autodesk.fbx",
+  "unity": "2018.4",
+  "version": "4.0.1",
+  "author": {
+    "name": "Unity"
+  },
+  "upmCi": {
+    "footprint": "f9cf4c6e3fc5dd653ff12371caf98bc2230019ea"
+  },
+  "repository": {
+    "url": "https://github.com/Unity-Technologies/com.autodesk.fbx.git",
+    "type": "git",
+    "revision": "3b923c5eaa7b71ef28f6b879559339c84e6f1b10"
+  }
+}

@@ -929,11 +929,11 @@ MonoBehaviour:
   skeletonOffsetY: 0
   skeletonOffsetZ: 0
   dress:
-  - apparel: {fileID: 4312792999747337018, guid: 4b0c4580d41c145d7af23f28453a4f44,
+  - apparel: {fileID: 7899024347046580732, guid: 10bc73b67a4bc413c82c461a18ffd843,
       type: 3}
     apparel_material: []
     Name: Ballerina
-  - apparel: {fileID: 983534671138404646, guid: c7c2ffeb45a39416c9d2ed16a91f6003,
+  - apparel: {fileID: 983534671138404646, guid: 3f99e630704354a3aab68a158ccf8b4e,
       type: 3}
     apparel_material:
     - Material:
@@ -943,7 +943,7 @@ MonoBehaviour:
       - {fileID: 2100000, guid: e575efcda61aa49a4b31c84c673cd087, type: 2}
       Name: Red
     Name: Prom Dress
-  - apparel: {fileID: 2274918944344370520, guid: 395a09b8b6a334cb7b3f291e7c26c61f,
+  - apparel: {fileID: 2274918944344370520, guid: 243e8cc99ab714adcadea4904fc912a9,
       type: 3}
     apparel_material:
     - Material:
@@ -959,7 +959,7 @@ MonoBehaviour:
       - {fileID: -6922793697723135513, guid: d87465eeb2fae4ec6a6b4ff8b0c583fd, type: 3}
       Name: Baby Pink
     Name: Maxi Dress
-  - apparel: {fileID: 4671461154110066597, guid: f3984064d25004c89a48cc31ad3b8dad,
+  - apparel: {fileID: 4671461154110066597, guid: 6f77974d127f7402caca48275e8a6e48,
       type: 3}
     apparel_material:
     - Material:
@@ -969,12 +969,8 @@ MonoBehaviour:
       - {fileID: 2100000, guid: c3f5be9ae576e40008f55e73862f1086, type: 2}
       Name: Hearty Print
     Name: Full Sleeves Top
-  - apparel: {fileID: 82878086377787914, guid: 615a00f33c706461b86672de2d83be2d, type: 3}
-    apparel_material: []
-    Name: Robot
   humanBodyManager: {fileID: 1843180251}
-  Mytemp:
-  - apparel: {fileID: 0}
+  clone_temp_var:
   - apparel: {fileID: 0}
   - apparel: {fileID: 0}
   - apparel: {fileID: 0}
@@ -1005,8 +1001,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d997b7a19294455994c953dda195e2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dressChangingToggle: {fileID: 1915109175}
-  MaterialChangingToggle: {fileID: 972133412}
+  dress_changing_button: {fileID: 1915109175}
+  material_changing_button: {fileID: 972133412}
 --- !u!1 &1915109173
 GameObject:
   m_ObjectHideFlags: 0

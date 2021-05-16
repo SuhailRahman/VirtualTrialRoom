@@ -8,139 +8,63 @@ using UnityEngine.UI;
 public class ButtonController : MonoBehaviour
 {
 
-    // public Material[] mats =  new Material[3];
+    [SerializeField]
+    private Button dress_changing_button;
+    private int dress_swap_counter = 0;
 
     [SerializeField]
-    private Button dressChangingToggle;
-    private int dress_swapCounter = 0;
+    private Button material_changing_button;
+    private int material_swap_counter = 0; 
 
-    [SerializeField]
-    private Button MaterialChangingToggle;
-    private int material_swapCounter = 0; 
+    //Declaring `HumanBodyTracker` object
+    HumanBodyTracker HumanBodyTracker_object;
 
-    // [SerializeField]
-    // public Dress_Prefab_Material[] dress;
+    //This function is called before the HumanBodyTracker Class and HumanBoneContoller Class
+    void Awake(){
 
-    // [SerializeField]
-    // public Dress_Colour_Material [] materials;
+        HumanBodyTracker_object = GetComponent<HumanBodyTracker>();
 
-    HumanBodyTracker skel;
+        //When the `dress_changing_button` is clicked, `SwapDress` function is called
+        dress_changing_button.onClick.AddListener(SwapDress);
 
-    // public bool val = true;
-	void Awake(){
+        //When the  `material_changing_button` is clicked, `SwapMaterial` function is called 
+        material_changing_button.onClick.AddListener(SwapMaterial);
 
-		skel = GetComponent<HumanBodyTracker>();
-
-        dressChangingToggle.onClick.AddListener(SwapDress);
-
-        MaterialChangingToggle.onClick.AddListener(SwapMaterial);
-
-        // ChangeMaterial(materials[0].Material);
-
-        dressChangingToggle.GetComponentInChildren<Text>().text = $"{skel.dress[dress_swapCounter].Name}";
-
-        //MaterialChangingToggle.GetComponentInChildren<Text>().text = $"{materials[material_swapCounter].Name}";
-        // skel.SkeletonPrefab =dress[swapCounter].apparel;
-        // foreach ( Temporary t in skel.Mytemp )
-        // {
-        // 	t.temp.SetActive(false);
-        // }
-        // skel.Mytemp[swapCounter].temp.SetActive(true);
+        //The button name is set as the first Apparel name
+        dress_changing_button.GetComponentInChildren<Text>().text = $"{HumanBodyTracker_object.dress[dress_swap_counter].Name}";
 
     }
 
     void SwapDress(){
-    	
-        // skel.temp.SetActive(!val);
-        // skel.Mytemp[swapCounter].temp.SetActive(false);
-        dress_swapCounter = dress_swapCounter == skel.dress.Length - 1 ? 0 : dress_swapCounter + 1;
-        // skel.Mytemp[swapCounter].temp.SetActive(true);
-        foreach ( Temporary t in skel.Mytemp )
+        
+        //increments the `dress_swap_counter` by 1 and resets the counter to 0 if the `dress_swap_counter` is equal to the 
+        //length of the array
+        dress_swap_counter = dress_swap_counter == HumanBodyTracker_object.dress.Length - 1 ? 0 : dress_swap_counter + 1;
+
+        //Sets all the apparels inactive/hidden
+        foreach ( Clone_Temporary t in HumanBodyTracker_object.clone_temp_var )
         {
-        	t.apparel.SetActive(false);
+            t.apparel.SetActive(false);
         }
-        skel.Mytemp[dress_swapCounter].apparel.SetActive(true);
+        //Displays the current apparel 
+        HumanBodyTracker_object.clone_temp_var[dress_swap_counter].apparel.SetActive(true);
 
-        dressChangingToggle.GetComponentInChildren<Text>().text = $"{skel.dress[dress_swapCounter].Name}";
-        // skel.SkeletonPrefab=dress[swapCounter].apparel;
-        // foreach(ARHumanBody human in skel.HumanBodyManagers.trackables)
-        //         {
-        //         	Instantiate(dress[swapCounter].apparel,human.transform);
-                    
-        //         }
-	}
+        //The button name is set as the current Apparel name
+        dress_changing_button.GetComponentInChildren<Text>().text = $"{HumanBodyTracker_object.dress[dress_swap_counter].Name}";
+    }
 
-	void SwapMaterial()
-	{
-		
-        if(skel.dress[dress_swapCounter].Name == "Balerina"){
-            MaterialChangingToggle.GetComponentInChildren<Text>().text = "Purple";
-        }
-        else
-        {
-            material_swapCounter = material_swapCounter == skel.dress[dress_swapCounter].apparel_material.Length - 1 ? 0 : material_swapCounter + 1;
-            skel.Mytemp[dress_swapCounter].apparel.GetComponentInChildren<SkinnedMeshRenderer>().sharedMaterials=skel.dress[dress_swapCounter].apparel_material[material_swapCounter].Material;
-            MaterialChangingToggle.GetComponentInChildren<Text>().text = $"{skel.dress[dress_swapCounter].apparel_material[material_swapCounter].Name}";
-        }
-        // ChangeMaterial(skel.dress[dress_swapCounter].apparel_material[material_swapCounter].Material);
-
-        //Material[] mats = new Materials[]{mat,bat,cat};
-      // if(skel.dress[dress_swapCounter].Name == "A"){
-            // skel.dress[dress_swapCounter].apparel.GetComponent<SkinnedMeshRenderer>().sharedMaterials=mats;
-
-          //skel.dress[dress_swapCounter].apparel_material[material_swapCounter].Material;
-          // MaterialChangingToggle.GetComponentInChildren<Text>().text = $"{skel.dress[dress_swapCounter].apparel.transform.Find("ace_PLY").gameObject.GetComponent<SkinnedMeshRenderer>().sharedMaterials}";
-
-      // }
-
-        // if(skel.dress[dress_swapCounter].Name == "A"){
-        //   foreach (Transform child in skel.dress[dress_swapCounter].apparel.transform)
-        //   {
-        //       if (child.tag == "suhail"){
-        //           child.gameObject.GetComponent<SkinnedMeshRenderer>().sharedMaterials[0]=mat;
-        //           //skel.dress[dress_swapCounter].apparel_material[material_swapCounter].Material;
-        //           MaterialChangingToggle.GetComponentInChildren<Text>().text = $"{child.gameObject.GetComponent<SkinnedMeshRenderer>().sharedMaterials[0]}";
-
-        //       }
-
-        //   }
-        //GameObject new_mat = skel.Mytemp[dress_swapCounter].apparel.transform.Find("ace_PLY").gameObject;
-        //new_mat.GetComponent<SkinnedMeshRenderer>().materials[0]=skel.dress[dress_swapCounter].apparel_material[material_swapCounter].Material;
-        //skel.Mytemp[dress_swapCounter].apparel.transform.Find("ace_PLY").gameObject.GetComponent<SkinnedMeshRenderer>().materials[2]=skel.dress[dress_swapCounter].apparel_material[material_swapCounter].Material;
-        // }
-        // MaterialChangingToggle.GetComponentInChildren<Text>().text = $"{skel.dress[dress_swapCounter].apparel_material[material_swapCounter].Name}";
-	}
-
-	// void ChangeMaterial(Material newMat)
- //      {
- //          Renderer[] children;
- //          children = skel.Mytemp[dress_swapCounter].apparel.GetComponentsInChildren<Renderer>();
- //          // children = parent.GetComponentsInChildren<Renderer>();
- //          foreach (Renderer rend in children)
- //          {
- //              var mats = new Material[rend.sharedMaterials.Length];
- //              for (var j = 0; j < rend.sharedMaterials.Length; j++)
- //              {
- //                  mats[j] = newMat;
- //              }
- //              rend.sharedMaterials = mats;
- //          }
- //      }
+    void SwapMaterial()
+    {
+            
+            //increments the `material_swap_counter` by 1 and resets the counter to 0 if the `material_swap_counter` is equal to the 
+            //length of the array
+            material_swap_counter = material_swap_counter == HumanBodyTracker_object.dress[dress_swap_counter].apparel_material.Length - 1 ? 0 : material_swap_counter + 1;
+            
+            //swaps the previous material of the apparel with the current one
+            HumanBodyTracker_object.clone_temp_var[dress_swap_counter].apparel.GetComponentInChildren<SkinnedMeshRenderer>().sharedMaterials=HumanBodyTracker_object.dress[dress_swap_counter].apparel_material[material_swap_counter].Material;
+            
+            //The button name is set as the current Material name
+            material_changing_button.GetComponentInChildren<Text>().text = $"{HumanBodyTracker_object.dress[dress_swap_counter].apparel_material[material_swap_counter].Name}";
+ 
+    }
 }
-
-
-// [System.Serializable]
-// public class Dress_Colour_Material   
-// {
-//     public Material Material;
-
-//     public string Name;
-// }
-// [System.Serializable]
-// public class Dress_Prefab_Material
-// {
-//     public GameObject apparel;
-
-//     public string Name;
-// }
-

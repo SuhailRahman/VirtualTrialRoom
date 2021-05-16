@@ -9,6 +9,7 @@ using UnityEngine.UI;
 public class HumanBodyTracker : MonoBehaviour
 {
 
+    //Offset is the relative positioning of the Apparel with respect to the user
     [SerializeField]
     [Range(-10.0f, 10.0f)]
     public float skeletonOffsetX = 0;
@@ -21,23 +22,17 @@ public class HumanBodyTracker : MonoBehaviour
     [SerializeField]
     public float skeletonOffsetZ = 0;
 
-    // [SerializeField]
-    // [Tooltip("The Skeleton prefab to be controlled.")]
-    // private GameObject[] skeletonPrefab;
-    
-    // private int swapCounter = 0;
-
     [SerializeField]
     public Dress_Prefab_Material[] dress;
-
-    
 
     [SerializeField]
     [Tooltip("The ARHumanBodyManager which will produce body tracking events.")]
     private ARHumanBodyManager humanBodyManager;
 
-
-    //change me
+    //Initiales an array of dictionary to keep track of the Skeleton Joints of the human and the apparel
+    //where the key is TrackableId - A session-unique identifier for trackables in the real-world environment
+    //and value is HumanBoneController which is a class responsible for initializing and updating the positions 
+    //of the Apparel
     public Dictionary<TrackableId, HumanBoneController>[] skeletonTracker = new Dictionary<TrackableId, HumanBoneController>[]
     {
     new Dictionary<TrackableId, HumanBoneController>(),
@@ -50,148 +45,113 @@ public class HumanBodyTracker : MonoBehaviour
     new Dictionary<TrackableId, HumanBoneController>()
 
     }; 
-                   // TrackableId - A session-unique identifier for trackables in the real-world environment
 
-
+    //initialiazing the Object of ARHumanBodyManager class
     public ARHumanBodyManager HumanBodyManagers
     {
         get { return humanBodyManager; }
         set { humanBodyManager = value; }
     }
 
-    // public GameObject SkeletonPrefab
-    // {
-    //     get { return skeletonPrefab; }
-    //     set { skeletonPrefab = value; }
-    // }
 
     [SerializeField]
-    public Temporary[] Mytemp; 
+    public Clone_Temporary[] clone_temp_var;//Declaring an Object to instantiate Apparels
 
+    //This function is called when the User enters the frame of sight
     void OnEnable()
     {
         Debug.Assert(humanBodyManager != null, "Human body manager is required.");
-        humanBodyManager.humanBodiesChanged += OnHumanBodiesChanged; //The event that is fired when a change to the detected human bodies
+
+        //This event is triggered when there is a change to the detected human bodies
+        humanBodyManager.humanBodiesChanged += OnHumanBodiesChanged; 
     }
 
+    //This function is called when the User leaves the frame of sight
     void OnDisable()                    
     {
-        if (humanBodyManager != null)
+        if (humanBodyManager != null){
+            //This event is triggered when there is a change to the detected human bodies
             humanBodyManager.humanBodiesChanged -= OnHumanBodiesChanged;
+        }
     }
 
     void OnHumanBodiesChanged(ARHumanBodiesChangedEventArgs eventArgs)
     {   
-        // temp = new GameObject[2];
-         HumanBoneController[] humanBoneController ; 
-          humanBoneController = new HumanBoneController[dress.Length];
 
+        HumanBoneController[] humanBoneController ; //declaring an array of `HumanBoneController` class objects
+
+        humanBoneController = new HumanBoneController[dress.Length];
+
+        //Added events is triggered when the User is detected inside the frame of sight
         foreach (var humanBody in eventArgs.added) // Iterating through The list of ARHumanBodys added since the last event
         {
             for (int i = 0 ; i < dress.Length ; i++ )
             {
-
+            //Caching the Human Body trackables
             if (!skeletonTracker[i].TryGetValue(humanBody.trackableId, out humanBoneController[i]))//Adds a new key to the skeleton tracker 
                                                                                           //if there is a new trackable found 
             {     
                 Debug.Log($"Adding a new skeleton [{humanBody.trackableId}].");
-                var newSkeletonGO = Instantiate(dress[i].apparel, humanBody.transform);
-                // var newSkeletonGO = Instantiate(skeletonPrefab, humanBody.transform); //cloning a variable  
-                // var newSkeletonGO2 = Instantiate(skeletonPrefab2, humanBody.transform); //cloning a variable  
-                // temp = newSkeletonGO;
-                // temp2 = newSkeletonGO2;
-                Mytemp[i].apparel = newSkeletonGO;
 
+                //Creates a clone of the apparel 
+                var newSkeletonGO = Instantiate(dress[i].apparel, humanBody.transform);
+
+                clone_temp_var[i].apparel = newSkeletonGO;
+
+                //Gets the HumanBoneController script
                 humanBoneController[i] = newSkeletonGO.GetComponent<HumanBoneController>();
                 
-                // add an offset just when the human body is added
+                // The offset is set to (0,0,0), this ensures that the Apparel gets superimposed onto the user
                 humanBoneController[i].transform.position = humanBoneController[i].transform.position + 
                     new Vector3(skeletonOffsetX, skeletonOffsetY, skeletonOffsetZ);
 
+                //adds the newly tracked joint to the dictionary
                 skeletonTracker[i].Add(humanBody.trackableId, humanBoneController[i]);
             }
 
             humanBoneController[i].InitializeSkeletonJoints(); // initalizes the newly added skeleton joints
+
             humanBoneController[i].ApplyBodyPose(humanBody, Vector3.zero); //Positioning the apparel w.r.t to the user
 
-            // HumanBodyTrackerUI.Instance.humanBodyText.text = $"{this.gameObject.name} {humanBody.name} Position: {humanBody.transform.position}\n"+
-            // $"LocalPosition: {humanBody.transform.localPosition}";
-
-            // HumanBodyTrackerUI.Instance.humanBoneControllerText.text = $"{this.gameObject.name} {humanBoneController.name} Position: {humanBoneController.transform.position}\n"+
-            // $"LocalPosition: {humanBoneController.transform.localPosition}";
             }
-
-            // foreach ( Temporary t in Mytemp )
-            // {
-            //     t.temp.SetActive(false);
-            // }
-            // Mytemp[0].temp.SetActive(true);
-
-
         }
 
-        // foreach (var humanBody in eventArgs.updated)
-        // {
-        //     if (skeletonTracker[0].TryGetValue(humanBody.trackableId, out humanBoneController[0])) //if the trackables are updated
-        //     {
-        //         humanBoneController[0].ApplyBodyPose(humanBody, Vector3.zero); //Positioning the apparel w.r.t to the user
-        //     }
-
-        //     // HumanBodyTrackerUI.Instance.humanBodyText.text = $"{this.gameObject.name} {humanBody.name} Position: {humanBody.transform.position}\n"+
-        //     // $"LocalPosition: {humanBody.transform.localPosition}";
-
-        //     // HumanBodyTrackerUI.Instance.humanBoneControllerText.text = $"{this.gameObject.name} {humanBoneController.name} Position: {humanBoneController.transform.position}\n"+
-        //     // $"LocalPosition: {humanBoneController.transform.localPosition}";
-        // }
- 
-          foreach (var humanBody in eventArgs.updated)
+        //Update event is triggered if the User moves or rotates
+        foreach (var humanBody in eventArgs.updated)
         {
-        	for (int i = 0 ; i < dress.Length ; i++ ){
-        		if (skeletonTracker[i].TryGetValue(humanBody.trackableId, out humanBoneController[i])) //if the trackables are updated
-            	{
-                	humanBoneController[i].ApplyBodyPose(humanBody, Vector3.zero); //Positioning the apparel w.r.t to the user
-            	}
-
-        	}
-
-        }  
-
-        foreach (var humanBody in eventArgs.removed)
-        {
-        	for (int i = 0 ; i < dress.Length ; i++ ){
-        		if (skeletonTracker[i].TryGetValue(humanBody.trackableId, out humanBoneController[i])) //if the trackables are updated
-            	{
-					Destroy(humanBoneController[i].gameObject);
-                    skeletonTracker[i].Remove(humanBody.trackableId);            	
+            for (int i = 0 ; i < dress.Length ; i++ ){
+                if (skeletonTracker[i].TryGetValue(humanBody.trackableId, out humanBoneController[i])) //if the trackables are present in dictionary
+                {                                                                                      //then it updates the positions of the apparel
+                    humanBoneController[i].ApplyBodyPose(humanBody, Vector3.zero); //Positioning the apparel w.r.t to the user
                 }
 
-        	}
-
+            }
+        
         }  
-
-
-        // foreach (var humanBody in eventArgs.removed)
-        // {
-        //     Debug.Log($"Removing a skeleton [{humanBody.trackableId}].");
-        //     if (skeletonTracker[0].TryGetValue(humanBody.trackableId, out humanBoneController[0]))
-        //     {
-        //         Destroy(humanBoneController[0].gameObject);
-        //         skeletonTracker[0].Remove(humanBody.trackableId);
-        //     }
-        // }
-
-        // HumanBodyTrackerUI.Instance.humanBodyTrackerText.text = $"{this.gameObject.name} Position: {this.gameObject.transform.position}\n"+
-        //     $"LocalPosition: {this.gameObject.transform.localPosition}";
+        //Removed events is triggered if the user leaves the frame of sight
+        foreach (var humanBody in eventArgs.removed)
+        {
+            for (int i = 0 ; i < dress.Length ; i++ ){
+                //Deallocating the dictionary and destroying all the apparels when the user leaves the frame
+                if (skeletonTracker[i].TryGetValue(humanBody.trackableId, out humanBoneController[i])) 
+                {
+                    Destroy(humanBoneController[i].gameObject);
+                    skeletonTracker[i].Remove(humanBody.trackableId);               
+                }
+            }
+        }  
     }
 }
+
+//User defined data type which contains array of Materials and name of the Materials
 [System.Serializable]
 public class Dress_Colour_Material
 {
     public Material[] Material;
-    // public Material Material;
     public string Name;
 }
 
+//User defined data type which contains the Apparel, Materials and the name of the Apparel
 [System.Serializable]
 public class Dress_Prefab_Material
 {
@@ -200,8 +160,8 @@ public class Dress_Prefab_Material
     public string Name;
 }
 
+//User defined data type which Stores the Clone of the instantiated Apparel
 [System.Serializable]
-public class Temporary {
+public class Clone_Temporary {
     public GameObject apparel;
-
 }

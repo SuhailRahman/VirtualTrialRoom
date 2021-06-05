@@ -1,6 +1,6 @@
 # Virtual Trial Room
-<p>An Augmented Reality based App where a user can "try-on" different apparels through iOS mobile devices, enabling a rich visual, realistic and an enjoyable experience.</p><br>
-<p>This application has 4 dresses which are *Balerina*, *Prom dress*, *Maxi dress* and *Full Sleeves t-shirt*. The User Interface consists of two buttons, where the users can change the apparels and colors of the apparels dynamically. The user can view all the different angles of the dress like the front view, back view and side view.</p>
+<p>An Augmented Reality based App where a user can "try-on" different apparels through iOS mobile devices, enabling a rich visual, realistic and an enjoyable experience.<br>
+This application has 4 dresses which are *Balerina*, *Prom dress*, *Maxi dress* and *Full Sleeves t-shirt*. The User Interface consists of two buttons, where the users can change the apparels and colors of the apparels dynamically. The user can view all the different angles of the dress like the front view, back view and side view.
 
 ![Balerina Dress](https://github.com/SuhailRahman/VirtualTrialRoom/blob/master/Images/Balerina%20dress.png "Balerina Dress")
 ![Prom Dress](https://github.com/SuhailRahman/VirtualTrialRoom/blob/master/Images/Prom%20Dress.png "Prom Dress")

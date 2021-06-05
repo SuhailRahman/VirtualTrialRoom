@@ -14,11 +14,11 @@ Once the prerequisites are installed. You need to open this project in Unity. In
 ## Customization 
 If you want to add an extra dress, you will have to download this template fbx file and replace the mesh of the robot with the mesh of your dress. Then apply rigging and skinning. You can check out this [tutorial](https://youtu.be/cRlb9tncJok). You can read more about this by clicking [here]
 
-**NOTE: Relace only the mesh not the bones. Blender3D is highly recommended to create a dress and tp perform rigging and skinning**
-
 Make the following changes:
 1. Increase the size of `Clone_Temporary` and `Dress_Prefab_Material` by 1 inside the `HumanBodyTracker` gameobject 
 2. Add `new Dictionary<TrackableId, HumanBoneController>(),` in line 38 of [`Assets/Script/HumanBodyTracker.cs`](https://github.com/SuhailRahman/VirtualTrialRoom/blob/master/Assets/Script/HumanBodyTracker.cs). To add different colors to the dress, increase the size of 'Dress_Colour_Material' field inside `HumanBodyTracker` gameobject, and different materials.
+
+**NOTE: Relace only the mesh not the bones. Blender3D is highly recommended to create a dress and tp perform rigging and skinning**
 
 ## Build App
 This [tutorial](https://youtu.be/80-nE7ichvk) demonstrates how to build this app on iOS devices using unity. Click [here](https://youtu.be/80-nE7ichvk) to watch.

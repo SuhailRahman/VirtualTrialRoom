@@ -9,7 +9,7 @@ This application has 4 dresses which are *Balerina*, *Prom dress*, *Maxi dress* 
 
 ## Prerequisites
 1. Unity Installed. If you haven't downloaded yet, click [here](https://unity3d.com/get-unity/download) to download.
-2. XCODE installed. 
+2. XCODE installed.<br>
 **NOTE: XCODE is compatible only with MAC OS**
 
 ## SetUp VirtualTrialRoom

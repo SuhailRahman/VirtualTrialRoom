@@ -16,7 +16,7 @@ This application has 4 dresses which are *Balerina*, *Prom dress*, *Maxi dress* 
 Once the prerequisites are installed. You need to open this project in Unity. In the scene, click on 'HumanBodyTracker' gameobject. Check all the fields are not empty except for the `Clone_Temporary` field, but the size of `Clone_Temporary` should be equal to `Dress_Prefab_Material`.
 
 ## Customization 
-If you want to add an extra dress, you will have to download this template fbx file and replace the mesh of the robot with the mesh of your dress. Then apply rigging and skinning. You can check out this [tutorial](https://youtu.be/cRlb9tncJok). You can read more about this by clicking [here]
+If you want to add an extra dress, you will have to download this template fbx file and replace the mesh of the robot with the mesh of your dress. Then apply rigging and skinning. You can check out this [tutorial](https://youtu.be/cRlb9tncJok). You can read more about this by clicking [here](https://docs.unity3d.com/Manual/UsingHumanoidChars.html)
 
 Make the following changes:
 1. Increase the size of `Clone_Temporary` and `Dress_Prefab_Material` by 1 inside the `HumanBodyTracker` gameobject 

@@ -32,9 +32,9 @@ It's always good to contribute back to the society. If you have any new features
 2. Don't toggle the second button when the apparel is displaying **Balerina** dress.
 3. IF you have any problems with the app, please create an issue. I'll get back to you asap.
 
-### Project Status: Alpha
+## Project Status: Alpha
 
-### References:
+## References:
 1. https://youtu.be/cfKzUYH4i7A
 2. https://github.com/Unity-Technologies/arfoundation-samples
 3. https://www.blender.org/

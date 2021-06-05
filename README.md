@@ -1,6 +1,6 @@
 # Virtual Trial Room
 An Augmented Reality based App where a user can "try-on" different apparels through iOS mobile devices, enabling a rich visual, realistic and an enjoyable experience.<br>
-This application has 4 dresses which are *Balerina*, *Prom dress*, *Maxi dress* and *Full Sleeves t-shirt*. The User Interface consists of two buttons, where the users can change the apparels and colors of the apparels dynamically. The user can view all the different angles of the dress like the front view, back view and side view.
+This application has 4 dresses which are *Balerina*, *Prom dress*, *Maxi dress* and *Full Sleeves t-shirt*. The User Interface consists of two buttons, dress changing button and colors changing button. The user can view all the angles of the dress like the front view, back view and side view.
 
 ![Balerina Dress](https://github.com/SuhailRahman/VirtualTrialRoom/blob/master/Images/Balerina%20dress.png "Balerina Dress")
 ![Prom Dress](https://github.com/SuhailRahman/VirtualTrialRoom/blob/master/Images/Prom%20Dress.png "Prom Dress")
@@ -16,11 +16,11 @@ This application has 4 dresses which are *Balerina*, *Prom dress*, *Maxi dress* 
 Once the prerequisites are installed. You need to open this project in Unity. In the scene, click on 'HumanBodyTracker' gameobject. Check all the fields are not empty except for the `Clone_Temporary` field, but the size of `Clone_Temporary` should be equal to `Dress_Prefab_Material`.
 
 ## Customization 
-If you want to add an extra dress, you will have to download this template fbx file and replace the mesh of the robot with the mesh of your dress. Then apply rigging and skinning. You can check out this [tutorial](https://youtu.be/cRlb9tncJok). You can read more about this by clicking [here](https://docs.unity3d.com/Manual/UsingHumanoidChars.html)<br>
-Make the following changes:
+If you want to add an extra dress, you will have to download this template fbx file and replace the mesh of the robot with the mesh of your dress. Then apply rigging and skinning. You can check out this [tutorial](https://youtu.be/cRlb9tncJok). You can also read more about this by clicking [here](https://docs.unity3d.com/Manual/UsingHumanoidChars.html)<br>
+After you are done with those steps, import the fbx file and make the following changes in Unity:
 1. Increase the size of `Clone_Temporary` and `Dress_Prefab_Material` by 1 inside the `HumanBodyTracker` gameobject 
-2. Add `new Dictionary<TrackableId, HumanBoneController>(),` in line 38 of [`Assets/Script/HumanBodyTracker.cs`](https://github.com/SuhailRahman/VirtualTrialRoom/blob/master/Assets/Script/HumanBodyTracker.cs). To add different colors to the dress, increase the size of 'Dress_Colour_Material' field inside `HumanBodyTracker` gameobject, and different materials.<br>
-**NOTE: Relace only the mesh not the bones. Blender3D is highly recommended to create a dress and tp perform rigging and skinning**
+2. Add `new Dictionary<TrackableId, HumanBoneController>(),` in line 38 of [`Assets/Script/HumanBodyTracker.cs`](https://github.com/SuhailRahman/VirtualTrialRoom/blob/master/Assets/Script/HumanBodyTracker.cs). To add different colors to the dress, increase the size of 'Dress_Colour_Material' field inside `HumanBodyTracker` gameobject, and add different materials.<br>
+**NOTE: Relace only the mesh not the bones. Blender3D is highly recommended to create a dress and, to perform rigging and skinning**
 
 ## Build App
 This [tutorial](https://youtu.be/80-nE7ichvk) demonstrates how to build this app on iOS devices using unity. Click [here](https://youtu.be/80-nE7ichvk) to watch.

@@ -1,5 +1,8 @@
 # VirtualTrialRoom
 An Augmented Reality based App where a user can "try-on" different apparels through iOS mobile devices, enabling a rich visual, realistic and an enjoyable experience.
+This application has 4 dresses which are *Balerina*, *Prom dress*, *Maxi dress* and *Full Sleeves t-shirt*. User Interface consists of two buttons, where the users can change the apparels and colors of the apparels dynamically. The user can view all the different angles of the dress like the front view, back view and side view.
+
+
 
 **NOTE: This app is compatible only with iOS devices such as Iphone XS and above(including latest iPad), with OS version of 11 and above.**
 
@@ -40,5 +43,7 @@ It's always good to contribute back to the society. If you have any new features
 2. https://github.com/Unity-Technologies/arfoundation-samples
 3. https://www.blender.org/
 4. https://unity3d.com/get-unity/download
+
+***
 
 ## Project Status: Alpha

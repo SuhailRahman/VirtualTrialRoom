@@ -21,8 +21,8 @@ Make the following changes:
 This [tutorial](https://youtu.be/80-nE7ichvk) demonstrates how to build this app on iOS devices using unity. Click [here](https://youtu.be/80-nE7ichvk) to watch.
 
 ## Future Work
-1.A new button can be added for trying on two different outfits together. For example, the user can try out a pant and shirt together.
-2.Physics motions can be added to the apparels to enhance the user experience.
+1. A new button can be added for trying on two different outfits together. For example, the user can try out a pant and shirt together.
+2. Physics motions can be added to the apparels to enhance the user experience.
 
 ## Contribution
 It's always good to contribute back to the society. If you have any new features or bug-fixes, please raise a PR.
@@ -32,9 +32,9 @@ It's always good to contribute back to the society. If you have any new features
 2. Don't toggle the second button when the apparel is displaying **Balerina** dress.
 3. IF you have any problems with the app, please create an issue. I'll get back to you asap.
 
-#### Project Status: Alpha
+### Project Status: Alpha
 
-References:
+### References:
 [1]https://youtu.be/cfKzUYH4i7A
 [2]https://github.com/Unity-Technologies/arfoundation-samples
 [3]https://www.blender.org/

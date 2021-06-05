@@ -40,5 +40,5 @@ It's always good to contribute back to the society. If you have any new features
 2. https://github.com/Unity-Technologies/arfoundation-samples
 3. https://www.blender.org/
 4. https://unity3d.com/get-unity/download
-5. 
+
 ## Project Status: Alpha
